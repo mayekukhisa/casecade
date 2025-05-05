@@ -4,8 +4,8 @@
  * Use of this source code is governed by a MIT license as appearing in the
  * LICENSE file included in the root of this source tree.
  */
-import { Camelize, Snakify } from "@/types"
-import { toCamelCase, toSnakeCase, walk } from "@/utils"
+import { Camelize, Pascalize, Snakify } from "@/types"
+import { toCamelCase, toPascalCase, toSnakeCase, walk } from "@/utils"
 
 /**
  * Transforms object property names from snake_case or PascalCase to camelCase
@@ -30,4 +30,17 @@ export function snakify<T, S extends boolean = false>(obj: T, shallow?: S): T ex
   return typeof obj === "string" ? (toSnakeCase(obj) as any) : (walk(obj, toSnakeCase, shallow) as any)
 }
 
-export type { Camelize, Snakify }
+/**
+ * Transforms object property names from camelCase to PascalCase
+ * @param obj - The object to transform
+ * @param shallow - If true, only transform the top level properties
+ * @returns The transformed object
+ */
+export function pascalize<T, S extends boolean = false>(
+  obj: T,
+  shallow?: S,
+): T extends string ? string : Pascalize<T, S> {
+  return typeof obj === "string" ? (toPascalCase(obj) as any) : (walk(obj, toPascalCase, shallow) as any)
+}
+
+export type { Camelize, Pascalize, Snakify }

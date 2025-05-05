@@ -59,3 +59,28 @@ type SnakifyObject<T, S = false> = {
  * @returns The transformed type
  */
 export type Snakify<T, S = false> = T extends Array<infer U> ? Array<SnakifyObject<U, S>> : SnakifyObject<T, S>
+
+type PascalCase<S extends string> = S extends `${infer F}${infer R}` ? `${Uppercase<F>}${R}` : S
+
+type PascalizeObject<T, S = false> = {
+  [K in keyof T as PascalCase<string & K>]: T[K] extends Date
+    ? T[K]
+    : T[K] extends RegExp
+      ? T[K]
+      : T[K] extends Array<infer U>
+        ? U extends object | undefined
+          ? Array<PascalizeObject<U>>
+          : T[K]
+        : T[K] extends object | undefined
+          ? S extends true
+            ? T[K]
+            : PascalizeObject<T[K]>
+          : T[K]
+}
+
+/**
+ * Transforms type property names from camelCase to PascalCase
+ * @param T - The type to transform
+ * @param S - If true, only transform the top level properties
+ */
+export type Pascalize<T, S = false> = T extends Array<infer U> ? Array<PascalizeObject<U, S>> : PascalizeObject<T, S>

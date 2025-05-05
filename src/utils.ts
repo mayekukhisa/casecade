@@ -13,6 +13,10 @@ export function toSnakeCase(str: string): string {
   return str.replace(/([A-Z])/g, (_, x) => `_${x.toLowerCase()}`)
 }
 
+export function toPascalCase(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
 export function walk<T>(obj: T, transformFn: (key: string) => string, shallow = false): any {
   if (!obj || typeof obj !== "object") return obj
   if (obj instanceof Date || obj instanceof RegExp) return obj
