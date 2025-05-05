@@ -24,6 +24,7 @@
     "prettier": "^3.5.3",
     "rollup": "^4.40.1",
     "rollup-plugin-delete": "^3.0.1",
+    "rollup-plugin-dts": "^6.2.1",
     "ts-jest": "^29.3.2",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.31.1"
