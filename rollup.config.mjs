@@ -17,5 +17,13 @@ export default defineConfig({
     dir: outputDir,
     sourcemap: !isProduction,
   },
-  plugins: [del({ targets: `${outputDir}/*` }), typescript({ sourceMap: !isProduction })],
+  plugins: [
+    del({ targets: `${outputDir}/*` }),
+    typescript({
+      sourceMap: !isProduction,
+      declaration: true,
+      declarationDir: outputDir,
+      exclude: ["src/**/*.test.ts"],
+    }),
+  ],
 })

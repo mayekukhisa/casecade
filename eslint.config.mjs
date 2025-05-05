@@ -14,6 +14,7 @@ export default tseslint.config(eslint.configs.recommended, tseslint.configs.reco
     "simple-import-sort": simpleImportSort,
   },
   rules: {
+    "@typescript-eslint/no-explicit-any": "off",
     "no-restricted-imports": [
       "error",
       {
