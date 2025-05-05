@@ -2,12 +2,30 @@
   "name": "casecade",
   "version": "0.1.0",
   "description": "A TypeScript utility for recursively transforming property names between cases, with proper typing",
+  "keywords": [
+    "camel-case",
+    "case-conversion",
+    "json",
+    "pascal-case",
+    "snake-case",
+    "transform",
+    "typescript"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Mayeku Khisa",
+    "url": "https://mayekukhisa.com"
+  },
+  "files": [
+    "dist"
+  ],
   "type": "module",
   "main": "dist/index.js",
-  "private": true,
+  "repository": "mayekukhisa/casecade",
   "scripts": {
     "test": "jest",
     "build": "rollup -c",
+    "build:prod": "rollup -c --environment NODE_ENV:production",
     "lint": "eslint src/ && codecap --check && prettier --check \"**/*.{json,md,yml}\" \"*.mjs\"",
     "format": "eslint src/ --fix && codecap --fix && prettier --write \"**/*.{json,md,yml}\" \"*.mjs\""
   },
@@ -28,6 +46,9 @@
     "ts-jest": "^29.3.2",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.31.1"
+  },
+  "engines": {
+    "node": ">=14.17.0"
   },
   "jest": {
     "transform": {
