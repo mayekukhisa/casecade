@@ -1,7 +1,7 @@
 {
   "name": "casecade",
   "version": "0.1.0",
-  "description": "A TypeScript utility for recursively transforming property names between cases, with proper typing",
+  "description": "Recursive type-safe case transformation between snake_case, camelCase, and PascalCase",
   "keywords": [
     "camel-case",
     "case-conversion",
