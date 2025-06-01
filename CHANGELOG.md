@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/mayekukhisa/casecade/compare/v0.1.0...v0.2.0) (2025-06-01)
+
+
+### Features
+
+* support dual packaging for ESM and CommonJS ([ef2a329](https://github.com/mayekukhisa/casecade/commit/ef2a329abca1d3b3fd7d12ac086246266fecf780))
+
 ## [0.1.0](https://github.com/mayekukhisa/casecade/compare/v0.1.0...v0.1.0) (2025-05-08)
 
 
