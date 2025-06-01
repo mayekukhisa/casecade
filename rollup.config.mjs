@@ -8,6 +8,7 @@ import typescript from "@rollup/plugin-typescript"
 import { defineConfig } from "rollup"
 import del from "rollup-plugin-delete"
 import { dts } from "rollup-plugin-dts"
+import prettier from "rollup-plugin-prettier"
 
 const isProduction = process.env.NODE_ENV === "production"
 
@@ -17,6 +18,11 @@ const typesOutputDir = `${outputDir}/types`
 const tsConfig = {
   sourceMap: !isProduction,
   exclude: ["src/**/*.test.ts"],
+}
+
+const prettierConfig = {
+  parser: "typescript",
+  printWidth: 120,
 }
 
 export default defineConfig([
@@ -37,6 +43,7 @@ export default defineConfig([
         declaration: true,
         declarationDir: typesOutputDir,
       }),
+      prettier(prettierConfig),
     ],
   },
   // CommonJS build
@@ -47,7 +54,7 @@ export default defineConfig([
       format: "cjs",
       sourcemap: !isProduction,
     },
-    plugins: [typescript(tsConfig)],
+    plugins: [typescript(tsConfig), prettier(prettierConfig)],
   },
   // Type definitions
   {
@@ -63,6 +70,7 @@ export default defineConfig([
           },
         },
       }),
+      prettier(prettierConfig),
       del({
         targets: typesOutputDir,
         hook: "buildEnd",
