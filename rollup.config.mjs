@@ -14,11 +14,18 @@ const isProduction = process.env.NODE_ENV === "production"
 const outputDir = "dist"
 const typesOutputDir = `${outputDir}/types`
 
+const tsConfig = {
+  sourceMap: !isProduction,
+  exclude: ["src/**/*.test.ts"],
+}
+
 export default defineConfig([
+  // ESM build
   {
     input: "src/index.ts",
     output: {
-      dir: outputDir,
+      file: `${outputDir}/index.js`,
+      format: "esm",
       sourcemap: !isProduction,
     },
     plugins: [
@@ -26,13 +33,23 @@ export default defineConfig([
         targets: `${outputDir}/*`,
       }),
       typescript({
-        sourceMap: !isProduction,
+        ...tsConfig,
         declaration: true,
         declarationDir: typesOutputDir,
-        exclude: ["src/**/*.test.ts"],
       }),
     ],
   },
+  // CommonJS build
+  {
+    input: "src/index.ts",
+    output: {
+      file: `${outputDir}/index.cjs`,
+      format: "cjs",
+      sourcemap: !isProduction,
+    },
+    plugins: [typescript(tsConfig)],
+  },
+  // Type definitions
   {
     input: `${typesOutputDir}/index.d.ts`,
     output: {
