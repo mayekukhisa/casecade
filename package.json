@@ -1,6 +1,6 @@
 {
   "name": "casecade",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Recursive type-safe case transformation between snake_case, camelCase, and PascalCase",
   "keywords": [
     "camel-case",
